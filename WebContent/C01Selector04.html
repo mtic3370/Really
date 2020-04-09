@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>C01Selector04.html</title>
+<style>
+    ul>li{
+        font-size:20px; font-weight:normal
+        color:green; width:400px;
+    }
+/*
+	13.반응선택자 : 마우스의 반응에 따라 태그를 선택한다. 
+		hover : 해당 영역에 마우스를 올렸을때 선택됨
+		active : 해당 영역에 마우스를 클릭했을때 선택됨
+	*/
+    .menu>li:hover{
+        color:red; font-weight: bold;
+    }
+    .menu>li:active{
+        color:yellow; background-color: black;
+    }
+ 
+	/*
+	14.상태선택자 : 요소의 현재상태에 따라 태그를 선택한다. 
+	*/
+    input:focus{ /*포커스를 얻었을때*/
+        border: 2px red dotted; background-color: yellow;
+    }   
+    input:enabled{/*활성화된 상태일때 (input의 디폴트상태임.)*/
+        color:red font-weight: bold;
+    }
+    input:disabled{/*비활성화 상태일때(input에 disabled속성 부여한 경우)*/
+        color:blue background-color: aqua;
+        border:1px gray solid;
+    }/*
+	15.after선택자 : 선택된 태그가 감싸고 있는 컨텐츠의 뒷부분에
+		특정 내용을 추가하고자 할때 사용.	
+	*/
+	ul.link li{list-style-type:none;}
+    /*내용부분에 텍스트와 href속성값을 연결하여 추가함.*/
+	ul.link a::after {
+		content: '-(웹주소)' attr(href);
+	}
+	
+	/*
+	16.부정선택자 : not(제외할선택자) 함수사용. 즉 선택된것 이외의
+		요소를 찾아서 적용할때 사용 
+	*/
+	ul.notClass li:not(.odd){
+		/* naver와 daum이 아닌 요소를 선택 */
+		background-color:yellow;
+	}
+</style>
+</head>
+<body>
+	<h2>반응선택자</h2>
+	<!-- div>ul>li*5 -->
+	<div>
+		<ul class="menu">
+			<li>메뉴1</li>
+			<li>메뉴2</li>
+			<li>메뉴3</li>
+			<li>메뉴4</li>
+			<li>메뉴5</li>
+		</ul>
+	</div>
+
+	<h2>상태선택자</h2>
+	<div>
+		<form action="">
+			이름 : <input type="text" name="name" />
+			<br />
+			아이디 : <input type="text" name="id" />
+			<br />
+			패스워드 : <input type="text" name="pwd" value="1234"
+				disabled />		
+		</form>
+	</div>
+
+
+	<h2>after선택자</h2>
+	<!-- div>ul.link>(li>a)*5 -->
+	<div>
+		<ul class="link">
+			<li><a href="http://naver.com">네이봐</a></li>
+			<li><a href="http://nate.com">네이2</a></li>
+			<li><a href="http://daum.net">다움</a></li>
+			<li><a href="http://google.com">가글</a></li>
+			<li><a href="http://ikosmo.co.kr">코수염</a></li>
+			<li><a href="http://yahoo.com">야후</a></li>			
+		</ul>
+	</div>
+
+
+
+	<h2>부정선택자</h2>
+	<!-- div>ul.notClass>(li>a)*4 -->
+	<div>
+		<ul class="notClass">
+			<li class="odd"><a href="#">Naver</a></li>
+			<li><a href="#">Nate</a></li>
+			<li class="odd"><a href="#">Daum</a></li>
+			<li><a href="#">Google</a></li>
+		</ul>
+	</div>
+	
+</body>
+</html>

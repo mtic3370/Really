@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C03Font02.html</title>
+</head>
+<style>
+body{
+    <span style="font-size:12px">글자크기12px</span><br>
+}
+
+/*
+text-decoration : 텍스트에 밑줄과 같은 효과를 줄때 사용하는
+    속성이다.
+    none : 텍스트에 아무런 효과도 주지않음
+    underline : 텍스트에 밑줄이 나타나게 함
+    line-through : skrike와 같이 중간에 라인을 표시함(크롬,IE는
+        지원되지 않음)
+    overline : 텍스트 윗부분에 라인을 표시함
+*/
+
+/* 페이지의 모든 a태그에 적용 */
+a{
+    text-decoration:none;color:green;
+}
+a:hover{/* 링크에 마우스를 올렸을때 */
+    text-decoration: underline;color:green;
+    font-size: 30px; font-weight: bold;
+}
+a:active {/* 링크에 마우스를 클릭했을때 */
+		text-decoration:overline; color:red;
+	}
+	a:visited {/* 방문한 이력이 있을때 선택됨 */
+		text-decoration:line-through; color:blue;
+	}
+
+
+	/* a태그중 class가 other인 요소에 적용 */
+	a.other{
+		text-decoration:none; color:brown;
+	}
+	a.other:hover {/* 링크에 마우스를 올렸을때 */
+		text-decoration:underline; color:#EEEEEE;
+		font-size:20px; font-weight:bold;
+	}
+</style>
+</head>
+<body>
+
+	<h2>기본폰트를 12px 설정했을때 텍스트 크기</h2>	
+	내가 기준 글자
+	<br /><br />
+	<span style="font-size:12px">글자크기12px</span><br />
+	<span style="font-size:9pt">글자크기9pt</span><br />
+	<span style="font-size:1em">글자크기1em</span><br />
+	<span style="font-size:1.5em">글자크기1.5em</span><br />
+	<span style="font-size:2em">글자크기2em</span><br />
+	
+
+
+
+
+	<h2>텍스트 꾸미기</h2>
+	<!-- div>ul.link>(li>a)*5 -->
+	<div>
+		<ul class="link">
+            이링크가 그럼 진짜 넘어가지나???^^시범
+			<li><a href="http://naver.com">네이봐</a></li>
+			<li><a href="http://nate.com">너이트</a></li>
+			<li><a href="http://daum.net">다움</a></li>
+			<li><a href="http://google.com">가글</a></li>
+			<li><a href="http://ikosmo.co.kr">코수모</a></li>
+			<li><a href="http://yahoo.com">야후</a></li>
+		</ul>
+	</div>
+
+	<div>
+		<a href="http://www.tmon.co.kr" class="other">다른효과주기</a>
+
+        이걸 입력하면....어찌될까?^^
+
+    </div>
+
+
+	
+	
+	<br /><br /><br /><br /><br /><br /><br /><br />
+	<br /><br /><br /><br /><br /><br /><br /><br />	
+</body>
+</html>

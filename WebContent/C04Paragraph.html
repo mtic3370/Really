@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C04Paragraph.html</title>
+</head>
+<body>
+    <!-- 수평방향에서의 정렬
+    블럭 엘리먼트 : 컨텐츠의 양에 상관없이 하나의 블럭을 차지하게 됨으로 우측에 
+    공간이 충분하여 컨텐츠는 우측정렬됨.
+인라인 엘리먼트 : 컨텐츠의 크기만큼만 영역을 차지함으로 컨텐츠가 움직일 공간이 없어 
+정렬되지 않는다.만약 정렬해야 한다면 부모 엘리먼트에서 text-align을 설정한다.-->
+    <h2>문단관련 CSS속성들</h2>
+    
+    <div style="border:1px blue dotted; width:400px;"><!-- text align:right; -->
+        <h2>컨텐츠 수평방향 정렬</h2>
+        <div style="border: 1px solid red; text-align: right;">블럭엘리먼트
+        </div>
+        <span style="border: 1px solid blue; text-align: right;">인라인엘리먼트
+        </span>
+    </div>
+    
+	<!-- 
+	line-height : 줄간격. 즉 라인사이의 간격을 띄우는데 
+		블럭엘리먼트와 인라인엘리먼트는 조금 다르게	적용된다.
+		
+		Block Element : 컨텐츠의 영역중 세로영역이 늘어나서 마치 
+			줄간격이 생긴것 같은 효과가	나타난다.
+		Inline Element : 컨텐츠의 영역은 크기가 변하지않고 지정된 
+			사이즈만큼 줄간격이 생기게된다.			
+     -->
+     <h3>줄사이의 간격</h3>
+     <h4 style="line-height: 5em; border: 1px solid blue;">
+        블럭엘리먼트1에 줄간격 적용</h4>
+        <h4 style="border:1px solid black;">블럭 엘리먼트2</h4>
+        <h4 style="border:1px solid black;">블럭 엘리먼트3</h4>
+        
+        <div class="inline">
+            <span style="line-height:5em;border:1px solid black;">
+                인라인엘리먼트1</span><br />
+            <span style="border:1px solid black;">인라인엘리먼트2</span><br />
+            <span style="border:1px solid black;">인라인엘리먼트3</span>
+        </div>
+</body>
+</html>

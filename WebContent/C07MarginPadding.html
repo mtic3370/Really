@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>C07MarginPadding.html</title>
+<style>
+	/* 패딩 속성값 각각 지정하기 */
+	#div1 {
+		border:1px solid gray;
+		padding-top:20px;
+		padding-right:20px;
+		padding-bottom:20px;
+		padding-left:20px;
+	}
+	
+	#div2 {/*상하지정*/
+		border:1px solid red;
+		padding:20px;
+	}
+	#div3 {/*상하좌우지정*/
+		border:1px solid blue;
+		padding:30px 50px;
+	}
+	#div4 {
+		border:1px solid green;
+		padding:30px 100px 10px;
+	}
+	#div5 {/*상하좌우 각각 지정*/
+		border:1px solid black;
+		padding:10px 30px 50px 70px;
+	}
+</style>
+</head>
+<body>
+	<h2>여백관련속성</h2>
+	
+	<h3>padding(안쪽여백) 관련 속성</h3>
+	
+	<h4>블럭엘리먼트</h4>
+	
+	<div id="div1">
+		"상우하좌" 여백 각각 지정하기
+	</div>
+	<div id="div2">
+		"상우하좌" 여백 동시 지정하기
+	</div>
+	<div id="div3">
+		"상하" "좌우" 여백 각각 지정하기
+	</div>
+	<div id="div4">
+		"상" "좌우" "하" 여백 각각 지정하기
+	</div>
+	<div id="div5">
+		"상" "우" "하" "좌" 여백 각각 지정하기
+	</div>
+	
+	<!-- 
+		인라인 엘리먼트는 좌측 padding만 컨텐츠를 우측으로 밀어주고
+		상,우, 하단의 경우에는 컨텐츠는 그대로 있고 영역만 해당방향
+		으로 늘어나고 컨텐츠에는 영향을 주지 않게 된다. 
+        따라서 컨텐츠를 아래로 밀어주고 싶다면 부모엘리먼트에서 margin값을 
+        통해 설정해야 한다. 
+	 -->
+	<h4>인라인 엘리먼트</h4>
+	<span style="border:1px solid orange; 
+					padding:20px 30px 20px 20px;">
+		나는 span 태그입니다. 인라인엘리먼트이죠~~
+	</span>
+	<br />
+	span태그 아래쪽 텍스트~~~~~~
+	
+	<h3>margin(바깥쪽여백) 관련 속성</h3>
+	
+	<h4>block과 block의 마진</h4>
+	<fieldset>
+		<legend>Case1</legend>
+		<!-- 
+        블럭1과 블럭2에서 각각 bottom, top속성으로margin을 적용했을때 
+        그중 큰값하나만 간격이 적용된다.
+        아래의 경우 margin_bottom:50만 적용된다.
+		margin-left, margin-right는 부모엘리먼트와의 여백이므로 각각
+		100px씩 떨어져있게된다. 
+		 -->
+		<div style="border:1px solid red; margin-bottom:50px;
+			margin-left:100px; margin-right:100px;">
+			Block 1번
+		</div>
+		<div style="border:1px solid green; margin-top:20px;">
+			블럭 2번
+		</div>
+	</fieldset>
+	
+	
+	
+	<h4>block과 ininle의 마진</h4>
+	<fieldset>
+		<legend>Case2</legend>
+		<!-- 
+		블럭에서 margin-bottom으로 설정한 값은 적용이 되나, 
+		인라인에서 margin-top으로 설정한 값은 적용되지 않는다. 
+		하지만 인라인에서 margin-left로 설정한 값은 적용이 가능하다. 
+		 -->		
+		<div style="border:1px solid green; margin-bottom:50px;">
+			블럭엘리먼트
+		</div>
+		
+		<span style="border:1px solid purple; margin-left:50px;
+				margin-top:0px;">
+			인라인엘리먼트
+		</span>		
+	</fieldset>
+	
+	
+	<h4>inline과 inline의 마진</h4>
+	<fieldset style="padding-top:50px;">
+		<!-- 
+		인라인엘리먼트의 경우 margin-top, margin-bottom은 적용되지
+		않으므로 부모와의 여백을 설정해야 하는 경우에는 부모쪽에서
+		padding값을 적용해야 한다. 
+		 -->
+		<legend>Case3</legend>
+		
+		<span style="border:1px solid red; margin-left:200px;">인라인1</span>
+		
+		<span style="border:1px solid blue; margin-right:200px;">인라인2</span>
+	</fieldset>
+	
+</body>
+</html>

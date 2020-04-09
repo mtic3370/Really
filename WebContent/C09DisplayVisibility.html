@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C09DisplayVisibility.html</title>
+    <style>
+        fieldset div{
+            width : 100px; height : 100px;
+            text-align:center; line-height: 100px;
+        }
+        .div1 {background-color: red;}
+        .div2 {background-color: blue;}
+        .div3 {background-color: green;}
+    </style>
+    </head>
+<body>
+    <h2>display VS Visibility속성</h2>
+    <fieldset>
+        <legend>Visibility속성</legend>
+<!-- Visibility:hidden;일때 영역은 그대로 유지하면서 숨김 처리된다. -->
+<div class="div1">left</div>
+<div class="div2" style="visibility:hidden;">center</div>
+		<div class="div3">right</div>		
+	</fieldset>
+	
+	<fieldset>
+		<legend>Display속성</legend>
+		<!-- display:none; 속성일때는 숨김처리되면서 영역까지도
+		동시에 사라진다. -->
+		<div class="div1">left</div>
+		<div class="div2" style="display:none;">center</div>
+		<div class="div3">right</div>		
+	</fieldset>
+	
+	<fieldset>
+		<legend>HTML5의 hidden 속성</legend>
+		<!-- HTML5의 hidden속성은 display:none;과 같은 효과가 
+		적용된다.  -->
+		<div class="div1">left</div>
+		<div class="div2" hidden>center</div>
+		<div class="div3">right</div>		
+	</fieldset>
+	
+	
+	<h3>display속성으로 block과 inline속성 변경하기</h3>
+	
+	<style>
+		fieldset.inline div {
+			display:inline;
+		}
+	</style>
+	<h4>block -> inline</h4>
+	<fieldset class="inline">
+		<legend>가로배치로 변경</legend>
+		<!--   -->
+		<div class="div1">left</div>
+		<div class="div2">center</div>
+		<div class="div3">right</div>		
+	</fieldset>
+	
+	
+	<style>
+		fieldset.inline_block div {
+			display:inline-block;
+		}
+	</style>
+	<h4>block -> inline-block</h4>
+	<fieldset class="inline_block">
+		<legend>가로배치로 변경(block속성 유지)</legend>
+		<!--   -->
+		<div class="div1">left</div>
+		<div class="div2">center</div>
+		<div class="div3">right</div>		
+	</fieldset>
+	
+	
+	<style>
+		fieldset.block span {
+			display:block;
+		}
+	</style>
+	<h4>inline -> block</h4>
+	<fieldset class="block">
+		<legend>세로배치로 변경</legend>
+		<!--   -->
+		<span class="div1">left</span>
+		<span class="div2">center</span>
+		<span class="div3">right</span>		
+	</fieldset>
+		
+</body>	
+</html>

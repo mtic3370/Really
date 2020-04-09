@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C05Border02.html</title>
+    <style>
+        /*공통속성*/
+        div div {
+            width:200px; height:200px;
+        }
+        
+        .radius{
+            border:5px solid red; background-color:blue;
+            text-align:center; line-height:200px; color:yellow;
+            /* 속성값의 순서(방향) : 좌상, 우상, 우하, 좌하 */
+            /* 전체크기의 50%크기만큼 깍아내면 원을 만들수 있다. */
+            border-radius:50px 50px 50px 50px;
+            이번엔 도형에 효과주기^^
+            달리진거 보이죠?^^
+            
+        }
+        
+        #shadow {
+            margin-top:70px; margin-bottom:70px; 
+            background-color:red;
+            
+            /* 속성값의순서 : 좌측여백 상단여백 흐림정도 색깔 
+                ※흐림의 정도는 0에 가까울수록 선명해지고 커질수록
+                흐려진다. 
+            */
+            box-shadow:70px 30px 30px #6d0202;
+            이번엔 그림자 속성을 변경해 볼게요.^^
+        }
+    </style>
+    </head>
+    <body>
+        <h2>둥근 테두리 및 그림자 표현하기 </h2>
+        
+        <div>
+            <div class="radius">
+                꼭지점 둥글게~~
+            </div>
+            <div id="shadow">
+                그림자효과 주기
+            </div>
+        </div>
+    </body>
+    </html>

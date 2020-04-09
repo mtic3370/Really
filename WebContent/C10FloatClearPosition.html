@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C10FloatClearPosition.html</title>
+    <style>
+        .div1{background-color:red;}
+        .div2{background-color:blue;}
+        .div3{background-color:green;}
+
+        .w100 { width:100px; }
+        .w150 { width:150px; }
+
+        .h100 { height:100px; }
+        .h150 { height:150px; }
+    </style>
+</head>
+<body>
+    <h2>Div배치(레이아웃)관련 속성</h2>
+    <!-- 
+		float속성 : 직역하면 "띄우다"라는 뜻을 가지고있다. 
+			주로 CSS에서 레이어의 배치를 위해 사용된다. 왼쪽 혹은 
+			우측으로 띄워서 정렬하거나 문서를 배치할때 사용한다. 
+     -->
+    <fieldset>
+        <legend>float속성 (div의 width속성 미지정)</legend>
+        <!-- 레이어의 사이즈를 미지정한 경우에는 FLOT속성을 부여한 엘리먼트
+             뒤에 있는 엘리먼트가 우측에 붙게된다.-->
+        <div class="div1" style="float:left">"박스1(R)"</div>
+        <div class="div2" style="float:right">"박스2(B)"</div>
+        <div class="div3">"박스3(G)"</div>
+    </fieldset>
+ 	
+	<fieldset>
+		<legend>float속성(div의 width속성 지정)</legend>
+        <!-- 레이어의 사이즈를 미지정한 경우에는 정렬하고자 하는 엘리먼트와 앞에 
+        있는 엘리먼트 모두에게 FLOT속성을 부여해야 한다.-->		
+		<div class="div1 w100" style="float:left;">박스1(R)</div>
+		<div class="div2 w100" style="float:left;">박스2(B)</div>
+		<div class="div3 w100" style="float:right;">박스3(G)</div>
+	</fieldset>
+	
+	
+	<!-- 
+	clear : 앞서 div에서 설정한 float의 속성이 남아서 뒤에 나오는
+		엘리먼트에 영향을 미치는 경우  float의 속성을 제거하기 위해
+		사용된다. 
+	 -->
+	<fieldset>
+		<legend>float 속성제거 > clear</legend>
+		
+		<div>
+			<div class="div1" STYLE="width:100px; height:100px; float:left;">div1</div>
+            <div class="div2" STYLE="width:100px; height:100px; float:left;">div2</div>		</div>
+		<!-- clear속성이 없으면 박스3은 박스1,박스2 아래로 파고
+		들어가서 정상적인 배치가 되지 않는다. clear:both 속성으로
+		float속성을 파괴하면 정상적인 배치가 된다.  -->
+		<div style="clear:both;"></div>
+				
+		<div class="div3 w150 h150">박스3(G)</div>
+    </fieldset>
+    <fieldset>
+        <legend>position:relative</legend>
+        <!-- 부모 하위의 static 위치를 기준으로 좌측에서 70만큼, 
+		위에서 10만큼 떨어진 위치에 배치된다.  -->
+        <div class="div1" style="position:relative; top:0px; left:30px; width:100px; height:100px;">relative
+        </div>
+    </fieldset>
+
+    <fieldset style="position:absolute;">
+        <!-- 부모의 좌측상단을 기준으로 좌에서 100, 상단에서 50만큼 간격을 떨어진다.
+        relative와 기준위치가 다르다.-->
+        <legend>position:absolute</legend>
+            <div class="div1" style="position:absolute; top:50px; left:100px; width:100px; height:100px;">absolute
+        </div>
+</fieldset>
+<p style="height: 200px;"></p>
+<!-- static일때는 위치값을 임의로 조정할수 없다. 아래의경우 고정된 위치에 출력됨. -->
+<fieldset style="position:static;">
+    <legend>position:static</legend>
+        <div class="div1" style="position:static; top:0px; left:0px; width:50px; height:50px;">
+            box1(0,0)
+        </div>
+
+    <div class="div2" style="position:static; top:100px; left:100px; width:50px; height:50px;">
+        box2(100,100) <!--left, top적용안됨 -->
+    </div>
+    <div class="div3" style="position:static; top:100px; left:100px; width:50px; height:50px;">
+        box3(100,100) <!--left, top적용안됨 -->
+    </div>
+</fieldset>
+
+<!-- 앞서 배치된 엘리먼트의 위치의 상대위치를 지정하게 되어 box2의 경우
+box1 아래쪽에 배치된다. 그리고 엘리먼트끼리 겹치는 경우 발생하지 않는다. -->
+<fieldset style="position:relative;">
+    <legend>position:relative</legend>
+        <div class="div1" style="position:relative; top:0px; left:0px; width:50px; height:50px;">
+            box1(0,0)
+        </div>
+
+    <div class="div2" style="position:relative; top:0px; left:50px; width:50px; height:50px;">
+        box2(50,0) 
+    </div>
+    <div class="div3" style="position:relative; top:20px; left:100px; width:50px; height:50px;">
+        box3(100,0)
+    </div>
+</fieldset>
+
+<!-- 엘리먼트가 absolute인 경우 부모엘리먼트가 position속성이 있는경우
+        부모좌측 상단이 기준점이 된다.
+     position속성이 없는경우
+        웹브라우저의 좌측 상단이 기준점이 된다.
+        따라서 원하는 어떤위치에도 레이어를 floting시킬수 있다. 
+    fieldset속성에 따라 레이어의 위치는 변동된다.-->
+<fieldset style="position:relative;">
+    <legend>position:absolute</legend>
+        <div class="div1" style="position:absolute; top:0px; left:0px; width:50px; height:50px;">
+            box1(0,0)
+        </div>
+
+    <div class="div2" style="position:absolute; top:25px; left:25px; width:50px; height:50px;">
+        box2(25,25) 
+    </div>
+    <div class="div3" style="position:absolute; top:50px; left:50px; width:50px; height:50px;
+    opacity: 50%;">
+        box3(50,50)
+    </div>
+</fieldset>
+
+<p style=height:100px;></p>
+<fieldset style="position:relative;">
+    <legend>position:absolute</legend>
+    <!-- z-index : 레이어의 우선순위를 지정할때 사용한다. 1~9999 까지의 사용할수 있고 
+    숫자가 클수록 높은 우선순위를 가지게 된다.
+    단 동일한 우선순위를 부여하면, 나중에 배치된 엘리먼트가 높은 우선순위를 가지게 된다.-->
+        <div class="div1" style="position:absolute; top:0px; left:0px; width:50px; height:50px;
+        z-index:9999;">
+            box1(0,0)
+        </div>
+
+    <div class="div2" style="position:absolute; top:25px; left:25px; width:50px; height:50px;
+    z-index:2;">
+        box2(25,25) 
+    </div>
+    <div class="div3" style="position:absolute; top:50px; left:50px; width:50px; height:50px;
+    opacity: 50%; z-index:10;">
+        box3(50,50)
+    </div>
+</fieldset>
+
+</body>
+</html>

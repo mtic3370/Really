@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>C06Background.html</title>
+<style>
+	#back1 div{
+		width:80%; height:400px;
+		background-image:url('./images/3.png');
+		background-repeat:repeat;
+	}
+	#back1 div:first-child {
+		border:1px solid red;
+	}
+	#back1 div:last-child {
+		border:1px solid blue;
+	}
+	
+	#back2 {
+		/* 배경이미지 설정 : url()부분에 이미지의 경로 설정함 */
+		background-image:url('./images/apple.png');
+		
+		/* 배경이미지의 반복여부 설정
+				repeat : 전체 반복
+				repeat-x : 가로축으로 반복
+				repeat-y : 세로축으로 반복
+				no-repeat : 반복없음. 이미지가 한번만 출력됨
+		*/
+		background-repeat:repeat;
+		
+		/* 배경이미지의 시작위치값 설정 : 좌측, 상단 순서로 설정함
+			즉 아래는 좌측에서 20, 상단에서 40만큼 간격이 생김 */
+		background-position:20px 40px;
+		
+		background-color:yellow;
+		width:400px; height:250px;
+	}
+	
+	/*
+	background 속성값을 동시에 사용할때는 여러 속성을 순서없이
+	나열하면 된다. 단 띄어쓰기만 주의하면 된다. 
+	*/
+	#back3 {
+		background:url("./images/banana.png") 0px 40px 
+			yellow repeat-x;
+		
+		width:400px; height:250px; 
+	}
+</style>
+</head>
+<body>
+	<h2>배경관련 CSS 속성</h2>
+	
+	<div>
+		<h3>배경색 지정</h3>
+		<!-- block은 컨ㅊ텐츠에 상관없이 하나의 블럭을 차지한다. -->
+		
+		<div style="background-color:#FF0000;">
+			블럭엘리먼트
+		</div>
+		<!-- inline은 컨텐츠의 크기만큼만 블럭을 차지한다. -->
+		<span style="background-color:#00FF00;">
+			인라인엘리먼트 <br /> 인라인엘리먼트
+		</span>
+	</div>
+	
+	<div id="back1">
+		<div>안녕하세요? 저는 뚱이입니다.</div>
+		<div>반가워용~~</div>
+	</div>
+	
+	<div id="back2">
+		div태그는 Division의 줄임말입니다.
+	</div>
+	
+	<div id="back3">
+		background속성을 동시에 사용하기
+	</div>	
+	
+</body>
+</html>
