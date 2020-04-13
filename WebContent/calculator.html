@@ -5,24 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>calculator.html</title>
 </head>
-<style>    /*공통속성*/
-    div div {
-        width:270px; height:110px;
-    }
-    
-    .radius{
-        border:5px solid rgb(221,221,221); div-color:green;
-        text-align:center; line-height:100px; color:yellow;
-        /* 속성값의 순서(방향) : 좌상, 우상, 우하, 좌하 */
-        /* 전체크기의 50%크기만큼 깍아내면 원을 만들수 있다. */
-        border-radius:10px 10px 10px 10px;
-    }
-
+<style>
         .div1{background-color:rgb(123,123,123);}
         .div2{background-color:rgb(12, 6, 6);}
         .div3{background-color:rgb(250, 150, 10);}
-        .div4{background-color:rgb(175, 175, 175);}
-
+        .bottom{background-color:rgb(175, 175, 175);}
+        .lcdpanel{background-color:green;}
         .w100 { width:100px; }
         .w150 { width:150px; }
 
@@ -30,36 +18,31 @@
         .h150 { height:150px; }
 </style>
 <body>
-        <div class="radius">
-            계산기 모델
-        </div>
-        .rect{border-rec:10px 10px 10px 10px;
+        <div class="bottom" STYLE="position:zindex; width:290px; height:440px; text-align:center; line-height:250px; border-radius:10px 10px 10px 10px;"></div>
 
-        <div class="div1" style="width:130px; height:50px; text-align:center; line-height:50px; color:black">BackSpace</div>
-        <div class="div1" style="position:relative; top:-50px; left:140px; width:130px; height:50px;text-align:center; line-height:50px; color:black">
-        C </div>
+        <div class="lcdpanel" style="position:absolute; top:20px; left:18px; width:270px; height:110px; text-align:right; line-height:180px; color:white; border-radius:10px 10px 10px 10px;">365*24*60&nbsp;</div>
+        <div class="div1" style="position:absolute; top:140px; left:18px; width:130px; height:50px; text-align:center; line-height:50px; color:white; border-radius:10px 10px 10px 10px;">BackSpace</div>
+        <div class="div1" style="position:absolute; top:140px; left:160px; width:130px; height:50px;text-align:center; line-height:50px; color:white; border-radius:10px 10px 10px 10px;">C </div>
 
-        <div class="div2" STYLE="top:-40px; left:0px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div1</div>
-		<div class="div2" STYLE="top:0px; left:10px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div2</div>
-        <div class="div2" STYLE="position:relative; top:-40px; left:20px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div2</div>
-        <div class="div3" STYLE="position:relative; top:-40px; left:30px; width:60px; height:50px; float:left; text-align:center; line-height:50px;">div3</div>
+        <div class="div2" STYLE="position:absolute; top:200px; left:18px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">7</div>
+		<div class="div2" STYLE="position:absolute; top:200px; left:88px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">8</div>
+        <div class="div2" STYLE="position:absolute; top:200px; left:158px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">9</div>
+        <div class="div3" STYLE="position:absolute; top:200px; left:228px; width:60px; height:50px; float:left; text-align:center; line-height:50px; border-radius:10px 10px 10px 10px;">/</div>
         
-        <div class="div2" STYLE="position:relative; top:20px; left:-240px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div4</div>
-		<div class="div2" STYLE="position:relative; top:20px; left:-230px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div5</div>
-        <div class="div2" STYLE="position:relative; top:20px; left:-220px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div6</div>
-        <div class="div3" STYLE="position:relative; top:20px; left:-210px; width:60px; height:50px; float:left; text-align:center; line-height:50px;">div7</div>
+        <div class="div2" STYLE="position:absolute; top:260px; left:18px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">4</div>
+		<div class="div2" STYLE="position:absolute; top:260px; left:88px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">5</div>
+        <div class="div2" STYLE="position:absolute; top:260px; left:158px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">6</div>
+        <div class="div3" STYLE="position:absolute; top:260px; left:228px; width:60px; height:50px; float:left; text-align:center; line-height:50px; border-radius:10px 10px 10px 10px;">*</div>
         
-        <div class="div2" STYLE="position:relative; top:80px; left:-480px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div1</div>
-		<div class="div2" STYLE="position:relative; top:80px; left:-470px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div2</div>
-        <div class="div2" STYLE="position:relative; top:80px; left:-460px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div2</div>
-        <div class="div3" STYLE="position:relative; top:80px; left:-450px; width:60px; height:50px; float:left; text-align:center; line-height:50px;">div3</div>
+        <div class="div2" STYLE="position:absolute; top:320px; left:18px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">1</div>
+		<div class="div2" STYLE="position:absolute; top:320px; left:88px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">2</div>
+        <div class="div2" STYLE="position:absolute; top:320px; left:158px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">3</div>
+        <div class="div3" STYLE="position:absolute; top:320px; left:228px; width:60px; height:50px; float:left; text-align:center; line-height:50px; border-radius:10px 10px 10px 10px;">-</div>
 
-        <div class="div2" STYLE="position:relative; top:-40px; left:0px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div1</div>
-		<div class="div2" STYLE="position:relative; top:-40px; left:10px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div2</div>
-        <div class="div2" STYLE="position:relative; top:-40px; left:20px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow;">div2</div>
-        <div class="div3" STYLE="position:relative; top:-40px; left:30px; width:60px; height:50px; float:left; text-align:center; line-height:50px;">div3</div>
-        <div class="div4" STYLE="position:zindex; top:-100px; left:10px; width:300px; height:350px"><!-- 계산기 바닥 --></div>
-    }
+        <div class="div2" STYLE="position:absolute; top:380px; left:18px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">.</div>
+		<div class="div2" STYLE="position:absolute; top:380px; left:88px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">0</div>
+        <div class="div2" STYLE="position:absolute; top:380px; left:158px; width:60px; height:50px; float:left; text-align:center; line-height:50px; color:yellow; border-radius:10px 10px 10px 10px;">=</div>
+        <div class="div3" STYLE="position:absolute; top:380px; left:228px; width:60px; height:50px; float:left; text-align:center; line-height:50px; border-radius:10px 10px 10px 10px;">+</div>
     </body>
     
         </html>
