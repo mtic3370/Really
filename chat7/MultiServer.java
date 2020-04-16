@@ -12,6 +12,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class MultiServer {
 
@@ -19,6 +24,14 @@ public class MultiServer {
 	static Socket socket = null;
 	// 클라이언트 정보 저장을 위한 map컬렉션 정의
 	Map<String, PrintWriter> clientMap;
+
+	// 접속된 모든 클라이언트들에게 메시지를 전달.
+	public static void main(String[] args) {
+		// 서버객체생성
+		MultiServer ms = new MultiServer();
+		// 채팅을 위한 초기화 부분
+		ms.init();
+	}	
 
 	// 생성자
 	public MultiServer() {
@@ -31,38 +44,54 @@ public class MultiServer {
 
 	public void init() {
 
-		try {
-			// 9999번 port로 설정해 서버를 생성후 클라이언트의 접속을 대기...
+		try {			// 9999번 port로 설정해 서버를 생성후 클라이언트의 접속을 대기...
 			serverSocket = new ServerSocket(9999);
 			System.out.println("서버가 시작되었습니다.");
+		
+	        try{
+	        	//소켓을 호스트의 포트와 binding
+	            String localHostAddress = InetAddress.getLocalHost().getHostAddress();
+	            serverSocket.bind(new InetSocketAddress(localHostAddress, Server_Port));
+	            System.out.println("[server] binding! \naddress:" + localHostAddress +
+	            		", :" + Server_Port);
 
-			while (true) {
-				socket = serverSocket.accept();
-				System.out.println(socket.getInetAddress() + ":" + socket.getPort());
+	            // 클라이언트로부터 연결 요청이 올 때까지 대기
+	            // 연결 요청이 오기 전까지 서버는 block 상태이며,
+	            // TCP 연결 과정인 3-way handshake로 연결이 되면 통신을 위한 Socket 객체가 반환됨
+	            // TCP 연결은 java에서 처리해주며, 더 내부적으로는 OS가 처리한다.
+	            Socket socket = serverSocket.accept();
 
-				// 클라이언트의 메세지를 모든 클라이언트에게 전달하기위한 쓰레드 생성 및 시동
-				Thread mst = new MultiServerT(socket);
-				mst.start();
+	            // 연결 요청이 오면 연결이 되었다는 메시지 출력
+	            InetSocketAddress remoteSocketAddress =(InetSocketAddress)socket.
+	            		getRemoteSocketAddress();
+	            String remoteHostName = remoteSocketAddress.getAddress().
+	            		getHostAddress();
+	            int remoteHostPort = remoteSocketAddress.getPort();
+	            System.out.println("[server] connected! \nconnected socket address:"
+	            		+ remoteHostName + ", port:" + remoteHostPort);
+	        }
+	            catch(IOException e){
+	        		e.printStackTrace();
+	        	}
+	        
+	        	
+	        	finally{
+	        		try{
+	        			if(serverSocket != null && !serverSocket.isClosed() ){
+	        				serverSocket.close();
+	        			}
+	        		}
+	        		catch(IOException e){
+	        			e.printStackTrace();
+	        		}
+	           	}
+			
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				serverSocket.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+	        catch(IOException e){
+    			e.printStackTrace();
+    		}
 		}
-	}
-
-	// 접속된 모든 클라이언트들에게 메시지를 전달.
-	public static void main(String[] args) {
-		// 서버객체생성
-		MultiServer ms = new MultiServer();
-		// 채팅을 위한 초기화 부분
-		ms.init();
-	}
-
+	
 	public void sendAllMsg(String name, String msg) {
 		// Map에 저장된 객체들의 키값(이름)을 가져온다.
 		Iterator<String> it = clientMap.keySet().iterator();
@@ -80,20 +109,17 @@ public class MultiServer {
 				 */
 				if (name.equals(n)) {
 					it_out.println(URLEncoder.encode(msg, "UTF-8"));
-				}
-				else if (name.equals(n)) {
+				} else if (name.equals(n)) {
 					it_out.println(msg);
-				}
-				else {
+				} else {
 					it_out.println("[" + name + "] " + msg);
 				}
-			} 
-			catch (Exception e) {
+			} catch (Exception e) {
 				System.out.println("예외:" + e);
 			}
 		}
 	}
-
+	
 	// 내부클래스
 	/*
 	 * 클라이언트로부터 읽어온 메시지를 다른 클라이언트에게 보내는 역할을 하는 메소드
@@ -142,37 +168,36 @@ public class MultiServer {
 
 				// 입력한 메세지는 모든 클라이언트에게 Echo된다.
 				while (in != null) {
-					
-						s = in.readLine();
-						s = URLDecoder.decode(s, "UTF-8");
-						System.out.println(s);
-						
-						if (s == null)
-							break;
 
-						System.out.println(name + " >> " + s);
-						sendAllMsg(name, s);// 첫번째 인자 포함해서 메소드호출
+					s = in.readLine();
+					s = URLDecoder.decode(s, "UTF-8");
+					System.out.println(s);
+
+					if (s == null)
+						break;
+
+					System.out.println(name + " >> " + s);
+					sendAllMsg(name, s);// 첫번째 인자 포함해서 메소드호출
 				}
-			}
-		catch(Exception e){
-			System.out.println("예외:" + e);
-		}
-			finally {
-			/*
-			 * 클라이언트가 접속을종료를 하면 예외가 발생되어 finally로 넘어오게 됨. 이때 "대화명"을 통해 remove()시켜줌.
-			 */
-			clientMap.remove(name);
-			sendAllMsg("", name + "님이 퇴장하셨습니다.");
-			// 퇴장하는 클라이언트의 쓰레드 명을 보여줌.
-			System.out.println(name + " [" + Thread.currentThread().getName() + "] 퇴장");
-			System.out.println("현재 접속자 수는 " + clientMap.size() + "명 입니다.");
-
-			try {
-				in.close();
-				out.close();
-				socket.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("예외:" + e);
+				
+			} finally {
+				/*
+				 * 클라이언트가 접속을종료를 하면 예외가 발생되어 finally로 넘어오게 됨. 이때 "대화명"을 통해 remove()시켜줌.
+				 */
+				clientMap.remove(name);
+				sendAllMsg("", name + "님이 퇴장하셨습니다.");
+				// 퇴장하는 클라이언트의 쓰레드 명을 보여줌.
+				System.out.println(name + " [" + Thread.currentThread().getName() + "] 퇴장");
+				System.out.println("현재 접속자 수는 " + clientMap.size() + "명 입니다.");
+
+				try {
+					in.close();
+					out.close();
+					socket.close();
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		}
