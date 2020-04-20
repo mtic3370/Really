@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>J08Function02.html</title>
+<script>
+document.write("<h2>지역변수와 전역변수</h2>");
+var globalVar = 100;//전역변수
+
+function conflict(globalVar){	
+	/*
+		this.globalVar -> 전역변수
+		globalVar -> 지역변수(매개변수)
+		
+		※키워드 this를 사용하는 이유는 전역변수와 지역변수(매개변수)의
+		이름이 동일해서 변수명 만으로 구분이 힘들기때문에 구분하기위해
+		사용한다. 만약 HTML문서내에 동일한 이름의 변수가 없다면 this와는
+		상관없이 전역변수를 가르키게된다. 
+	*/
+	this.globalVar = globalVar * 2;//매개변수에 *2를 해 전역변수에 200할당
+	
+	document.write("함수안 globalVar="+ globalVar
+			+"<br/>");//지역(매개)변수 => 100
+	
+	document.write("함수안 this.globalVar="+ 
+			this.globalVar +"<br/>");//전역변수 => 200
+}
+conflict(globalVar);//매개변수로 전달되는값 => 100
+document.write("함수밖 globalVar="+ globalVar 
+		+"<br/>");//전역변수 => 200
+		
+		
+function conflict2(localVar){//200
+	
+	globalVar = localVar + 50;//전역250
+	localVar = localVar + 80;//지역280
+	
+	document.write("함수2안 globalVar="+ globalVar 
+		+", localVar="+ localVar +"<br/>");
+}
+conflict2(globalVar);//전역200	
+document.write("함수2밖 globalVar="+ globalVar
+ 	/* 
+ 		localVar는 conflict2()의 지역변수로 선언되어, 전역적으로는 
+ 		선언된적이 없는 변수이므로 출력자체가 불가능함.
+ 		에러가 발생되어 실행되지 않음.
+ 		
+ 		+", localVar=선언된적없음=>"+ localVar +"<br/>"); 
+ 	*/
+	+", localVar=선언된적없음<br/>");
+</script>
+</head>
+<body>
+
+</body>
+</html>

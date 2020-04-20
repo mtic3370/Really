@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J06Switch.html</title>
+    <script>
+        /*
+        switch(식)
+            -Java : 식이 정수값(byte/short/char/int)이 나올수
+            있는 정수식(산술식)이거나 문자열(string)이어야
+            한다. long타입은 올 수 없다.
+            -JS : 모든 값이 나올수 있는 식이 가능하다. 즉, 
+            정수뿐만 아니라 실수, 논리값(true/false), 문자열도
+            가능하다.
+        */
+
+        switch(10%2==0){
+            case true:
+            document.write("짝수닷<br>");
+            break;
+            case false:
+            document.write("홀수닷<br>");
+            break;
+        }
+        switch("자스"){
+            case "자바": document.write("자바닷");
+            break;
+            case "자스": document.write("자스닷");
+            break;
+            case "자수": document.write("자수닷");
+            break;
+        }
+</script>
+</head>
+<body>
+    
+</body>
+</html>

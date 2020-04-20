@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J11Math.html</title>
+    <script>
+        document.write("JS의 core객체 - Math");
+        
+        //1.abs() : 절대값
+        document.write("-10의 절대값 :"+Math.abs(-10)+"<br>");
+        //2. pow():지수
+        document.write("2의3승:"+Math.pow(2,3)+"<br>");
+
+        //3.round():반올림
+        document.write("3.159의 반올림 :"+Math.round(3.159)+"<br>");
+
+        //4.ceil():무조건올림
+        document.write("3.159의 올림 :"+Math.ceil(3.159)+"<br>");
+        //5.floor():무조건 내림(버림)
+        document.write("3.159의 내림 :"+Math.floor(3.159)+"<br>");
+        //6.random() : 난수생성
+/*
+0.0 ~ 1.0 사이의 실수를 랜덤하게 발생시킴.
+    예) 1~5사이의 난수를 생성하시오
+        5를 미포함 할경우 
+            parseInt(Math.random()*4) + 1;
+        5를 포함 할경우
+            parseInt(Math.random()*5) + 1;
+*/
+document.write("난수발생1:"+ Math.random()+"<br/>");
+document.write("난수발생2(1~10):"+ parseInt((Math.random()*10)+1)+"<br/>");
+
+//J08Function02.html 에서 발췌함
+function setOrdering(arrParam){	
+	for(var i=0 ; i<arrParam.length-1 ; i++) {		 
+		for(var j=0 ; j<(arrParam.length-1)-i ; j++) {		 
+			//오름차순정렬
+			if(arrParam[j] > arrParam[j+1]) {
+				/*
+				앞의 수가 크면 뒷자리와 서로 교환한다.
+				즉 큰수를 뒤로 보낸다.
+				 */
+				temp = arrParam[j];
+				arrParam[j] = arrParam[j+1];
+				arrParam[j+1] = temp;	
+			}
+		}
+	}
+}
+//로또번호 생성하기
+function getLotto()
+{
+    //로또번호를 문자열로 연결하여 출력하기 위한변수
+	var lottoStr = "";
+    //생성된 로또번호를 저장하기위한 배열
+	var lottoNum = [0,0,0,0,0,0];
+    //로또 배열의 인덱스로 사용할 변수
+	var index = 0;
+    //로또 배열에 중복이 있는지 확인하기 위한 변수
+	var flag = false;
+	
+    /*
+    배열에 중복되 난수가 없을때 하나씩 채워지면서 +1처리됨.
+    총 6번 반복생성
+    */
+	while(index<6){
+        //1~45 사이의 난수 생성
+		var randomNum = parseInt(Math.random()*45) + 1;
+		/*
+        배열에 저장된 요소와 생성된 난수를 비교하여 중복값이 발견되면
+        flag를 true로 바꿔준다.
+        */
+		for(var i=0 ; i<lottoNum.length ; i++){
+			if(lottoNum[i]==randomNum){
+				flag = true;
+				//중복값이 확인되면 즉시 루프를 탈출한다. 
+                break;
+			}				
+		}
+		
+		if(flag==true){	
+            /*만약 중복값이 확인되었다면 while의 처음으로 돌아가서
+            난수를 다시 생성한다. 단, 돌아가기전 flag를 false로
+            초기화한다. */
+			flag = false;
+			continue;
+		}
+		else{
+            //중복이 안되었다면 로또배열에 난수를 채워준다.
+			lottoNum[index++] = randomNum;
+		}
+	}	
+    //로또번호를 오름차순으로 정렬
+	setOrdering(lottoNum);
+
+    //로또배열 출력
+	for(var i=0 ; i<lottoNum.length ; i++){
+		lottoStr += lottoNum[i] +"&nbsp;";
+	}
+	document.getElementById("lottoNumber").innerHTML
+		= lottoStr;
+}
+</script>
+</head>
+<body>
+    <h2>Lotto(1~45) 번호 생성하기</h2>
+    <button type="button" onclick="getLotto();">
+        로또번호생성하기
+    </button>
+    <!--span#lottoNumber-->
+    <span id="lottoNumber" style="font-size:2em; color:red;">
+        생성된 로또번호는 여기에 출력됩니다.
+    </span>
+</body>
+</html>

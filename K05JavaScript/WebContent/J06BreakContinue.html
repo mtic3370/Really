@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J07BreakContinue.html</title>
+    <script>
+        /*
+        break : 반복문이나 switch문을 탈출한다.
+            블럭이 여러개일 경우에는 가장 가까운 반복블럭을
+            탈출한다.
+        continue : 현재 continue가 속해있는 반복블럭의 
+            처음으로 이동한다.
+            
+        즉, break문과 continue문 이후의 문장은 실행되지 
+        않는다.		
+        */
+
+        var i=0;
+        while(-1){
+            i++;
+
+            document.write("i="+ i +"<br/>");
+		if(i==3) break;
+
+        document.write("break문 이후 출력문<br>");
+        
+        if(i==3) break;
+        document.write("continue문 이후 출력문<br/>");
+        }
+        document.write("while문 종료");
+        </script>
+</head>
+<body>
+    
+</body>
+</html>
